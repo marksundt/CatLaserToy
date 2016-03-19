@@ -24,8 +24,8 @@
 MotorDriver motor(0);//value passed is the address- remove resistor R1 for 1, R2 for 2, R1 and R2 for 3
 
 int maxPWM=10000;
-int steps=100;
-int stepSize=maxPWM/steps;
+
+long randNumbDelay;
 
 void setup(){
   Serial.begin(9600);
@@ -39,24 +39,34 @@ void setup(){
   //The failsafe turns off motors if a command is not sent in a certain amount of time.
   //Failsafe is set in milliseconds- comment or set to 0 to disable
   motor.setFailsafe(1000);
+  randomSeed(analogRead(0));
   Serial.println("Set Up Completed!");
 }
 
-  void loop(){
-    Serial.println("First Loop");
-  int i;
-  for(i=-maxPWM;i<maxPWM;i+=stepSize){
-    delay(1000);
-    motor.setMotor(1,3200);
-    Serial.println(i,DEC);
-    //motor.setMotor(2,i);
-  }
-    Serial.println("Second Loop");
-  for(i=maxPWM;i>-maxPWM;i-=stepSize){
-    delay(1000);
-    motor.setMotor(1,-3200);
-    Serial.println(i,DEC);
-   // motor.setMotor(2,i);
-  }
+  void loop()
+{
+
+  randNumbDelay = random(5,15);
+
+  Serial.print("Rand: ");
+  Serial.println(randNumbDelay);
+  
+  if(randNumbDelay%2 == 0)
+    {
+      for(int i=1;i < randNumbDelay;i++)
+      {
+      motor.setMotor(1,3200);
+      delay(1000);
+      }
+    }
+   else
+    {
+      for(int i=1;i < randNumbDelay;i++)
+      {
+      motor.setMotor(1,-3200);
+      delay(1000);
+      }
+    }
+
 }
 
