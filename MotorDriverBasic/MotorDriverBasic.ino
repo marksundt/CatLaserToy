@@ -23,7 +23,8 @@
 
 MotorDriver motor(0);//value passed is the address- remove resistor R1 for 1, R2 for 2, R1 and R2 for 3
 
-int maxPWM=10000;
+// started 1000
+int maxPWM=100;
 
 long randNumbDelay;
 
@@ -56,7 +57,7 @@ void setup(){
       for(int i=1;i < randNumbDelay;i++)
       {
       // From 3200 to 1000
-      motor.setMotor(1,1000);
+      motor.setMotor(1,49);
       delay(1000);
       }
     }
@@ -64,7 +65,7 @@ void setup(){
     {
       for(int i=1;i < randNumbDelay;i++)
       {
-      motor.setMotor(1,-1000);
+      motor.setMotor(1,-49);
       delay(1000);
       }
     }
