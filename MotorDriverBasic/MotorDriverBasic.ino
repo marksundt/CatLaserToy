@@ -55,7 +55,8 @@ void setup(){
     {
       for(int i=1;i < randNumbDelay;i++)
       {
-      motor.setMotor(1,3200);
+      // From 3200 to 1000
+      motor.setMotor(1,1000);
       delay(1000);
       }
     }
@@ -63,7 +64,7 @@ void setup(){
     {
       for(int i=1;i < randNumbDelay;i++)
       {
-      motor.setMotor(1,-3200);
+      motor.setMotor(1,-1000);
       delay(1000);
       }
     }
